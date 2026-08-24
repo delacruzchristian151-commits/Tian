@@ -11,6 +11,28 @@
 </head>
 <body class="bg-slate-900 text-gray-100 font-sans antialiased overflow-x-hidden">
 
+  <!-- Welcome Pop-Up Modal -->
+  <div id="welcomeModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-[100] flex items-center justify-center p-4 transition-opacity duration-300">
+    <div class="bg-slate-800 border border-slate-700 max-w-md w-full rounded-2xl p-6 text-center shadow-2xl relative" data-aos="zoom-in">
+      
+      <!-- Icon Badge -->
+      <div class="w-16 h-16 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+        👋
+      </div>
+
+      <!-- Title & Greeting -->
+      <h3 class="text-2xl font-bold text-white mb-2">Welcome to My Portfolio!</h3>
+      <p class="text-gray-300 text-sm mb-6 leading-relaxed">
+        Hi! I'm <span class="text-emerald-400 font-bold">Christian Renier Dela Cruz</span>. Thank you for visiting! Explore my top real estate listings, project details, and flexible payment plans below.
+      </p>
+
+      <!-- Action Button -->
+      <button onclick="closeWelcomeModal()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl transition duration-300 text-sm shadow-lg shadow-emerald-500/20">
+        Explore Listings Now 🚀
+      </button>
+    </div>
+  </div>
+
   <!-- Navigation Bar -->
   <nav class="fixed top-0 w-full bg-slate-900/90 backdrop-blur-md z-50 border-b border-slate-800">
     <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
@@ -25,10 +47,10 @@
     </div>
   </nav>
 
-  <!-- Hero Section with Profile Picture & Scroll Indicator -->
+  <!-- Hero Section with Profile Picture, Tagline & Scroll Indicator -->
   <section class="min-h-screen pt-28 pb-12 px-4 max-w-6xl mx-auto flex flex-col justify-between items-center text-center" data-aos="fade-down" data-aos-duration="1000">
     
-    <div></div> <!-- Spacer for centering -->
+    <div></div> <!-- Top spacer for centering -->
 
     <div>
       <!-- Profile Image -->
@@ -39,15 +61,20 @@
         </div>
       </div>
 
-      <span class="inline-block bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
+      <!-- Welcome Badge & Role -->
+      <span class="inline-block bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
         Licensed Real Estate Sales Executive
       </span>
+
+      <!-- Headline -->
       <h1 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight mb-4">
         Find Your Dream Home & <br class="hidden sm:inline"> Smart Property Investment
       </h1>
       <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base mb-8">
         Helping families and investors secure modern townhouses, single-attached homes, and prime real estate opportunities across Bulacan, Metro Manila, and Nueva Ecija.
       </p>
+
+      <!-- Action Buttons -->
       <div class="flex justify-center gap-4">
         <a href="https://www.facebook.com/share/19WmBfGU13/?mibextid=wwXIfr" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition duration-300 text-sm shadow-lg shadow-emerald-500/20">
           Book Free Tripping
@@ -58,9 +85,9 @@
       </div>
     </div>
 
-    <!-- Scroll Down Prompt Element -->
+    <!-- Scroll Down Indicator -->
     <a href="#properties" class="mt-8 flex flex-col items-center text-gray-400 hover:text-emerald-400 transition group cursor-pointer">
-      <span class="text-xs uppercase tracking-widest font-semibold mb-2 group-hover:translate-y-1 transition duration-300">Scroll Down</span>
+      <span class="text-xs uppercase tracking-widest font-semibold mb-2 group-hover:translate-y-1 transition duration-300">Scroll Down to Explore</span>
       <svg class="w-6 h-6 animate-bounce text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
       </svg>
@@ -258,10 +285,20 @@
   <!-- AOS Animation JS Script -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
+    // Initialize Scroll Animations
     AOS.init({
       duration: 800,
       once: true
     });
+
+    // Close Welcome Modal Function
+    function closeWelcomeModal() {
+      const modal = document.getElementById('welcomeModal');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 300);
+    }
   </script>
 </body>
 </html>
