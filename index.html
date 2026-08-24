@@ -30,8 +30,6 @@
   <!-- Interactive Site Viewing Booking Modal -->
   <div id="bookingModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-[100] hidden items-center justify-center p-4">
     <div class="bg-slate-800 border border-slate-700 max-w-lg w-full rounded-2xl p-6 shadow-2xl relative">
-      
-      <!-- Modal Header -->
       <div class="flex justify-between items-center mb-4 border-b border-slate-700 pb-3">
         <h3 class="text-xl font-bold text-emerald-400 flex items-center gap-2">
           <span>📅</span> Schedule Site Viewing
@@ -41,14 +39,11 @@
 
       <p class="text-xs text-gray-300 mb-5">Pumili ng tamang petsa, oras, at ilagay ang iyong contact information para ma-confirm ang tripping.</p>
 
-      <!-- Booking Form -->
-      <form id="bookingForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
-        
-        <!-- Name & CP Number -->
+      <form id="bookingForm" class="space-y-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-semibold text-gray-300 mb-1">Kumpletong Pangalan *</label>
-            <input type="text" id="clientName" required placeholder="ex. Juan Dela Cruz" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
+            <input type="text" id="clientName" required placeholder="ex. Sir Allan" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
           </div>
           <div>
             <label class="block text-xs font-semibold text-gray-300 mb-1">Cellphone Number *</label>
@@ -56,7 +51,6 @@
           </div>
         </div>
 
-        <!-- Project Choice -->
         <div>
           <label class="block text-xs font-semibold text-gray-300 mb-1">Project Site na Bisitahin</label>
           <select id="projectSelect" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
@@ -68,7 +62,6 @@
           </select>
         </div>
 
-        <!-- Date & Time -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-semibold text-gray-300 mb-1">Preferred Date *</label>
@@ -80,7 +73,6 @@
           </div>
         </div>
 
-        <!-- Submission Buttons -->
         <div class="pt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <button type="button" onclick="sendBooking('sms')" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl transition duration-300 text-xs flex items-center justify-center gap-2">
             <span>📱</span> Send via SMS / Text
@@ -90,7 +82,38 @@
           </button>
         </div>
       </form>
+    </div>
+  </div>
 
+  <!-- Leave Review Modal -->
+  <div id="reviewModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-[100] hidden items-center justify-center p-4">
+    <div class="bg-slate-800 border border-slate-700 max-w-md w-full rounded-2xl p-6 shadow-2xl relative">
+      <div class="flex justify-between items-center mb-4 border-b border-slate-700 pb-3">
+        <h3 class="text-lg font-bold text-emerald-400">⭐ Leave a Client Review</h3>
+        <button onclick="closeReviewModal()" class="text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
+      </div>
+
+      <form onsubmit="submitReview(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Your Name</label>
+          <input type="text" id="reviewerName" required placeholder="ex. Hashim" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Rating</label>
+          <select id="reviewerRating" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-amber-400 focus:outline-none focus:border-emerald-500">
+            <option value="5">⭐⭐⭐⭐⭐ (5/5 Excellent)</option>
+            <option value="4">⭐⭐⭐⭐ (4/5 Very Good)</option>
+            <option value="3">⭐⭐⭐ (3/5 Good)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Feedback / Comment</label>
+          <textarea id="reviewerComment" rows="3" required placeholder="Share your experience working with Christian..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2.5 rounded-xl transition duration-300 text-xs">
+          Submit Feedback
+        </button>
+      </form>
     </div>
   </div>
 
@@ -102,6 +125,7 @@
       </a>
       <div class="flex gap-4 sm:gap-6 text-xs sm:text-sm font-medium text-gray-300">
         <a href="#properties" class="hover:text-emerald-400 transition">Properties</a>
+        <a href="#reviews" class="hover:text-emerald-400 transition">Reviews</a>
         <a href="#about" class="hover:text-emerald-400 transition">About</a>
         <a href="#contact" class="hover:text-emerald-400 transition">Contact</a>
       </div>
@@ -120,9 +144,14 @@
         </div>
       </div>
 
-      <span class="inline-block bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
-        Licensed Real Estate Sales Executive
-      </span>
+      <div class="flex justify-center items-center gap-2 mb-3">
+        <span class="inline-block bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
+          Licensed Real Estate Sales Executive
+        </span>
+        <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1">
+          ★ 5.0 Rated
+        </span>
+      </div>
 
       <h1 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight mb-4">
         Find Your Dream Home & <br class="hidden sm:inline"> Smart Property Investment
@@ -152,14 +181,12 @@
   <!-- Featured Properties Section -->
   <section id="properties" class="py-12 bg-slate-950/50 border-t border-slate-800">
     <div class="max-w-6xl mx-auto px-4">
-      
       <div class="mb-10 text-center sm:text-left" data-aos="fade-right">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Featured Projects</h2>
         <p class="text-gray-400 text-sm mt-1">Explore prime residential units with flexible equity and low reservation fees.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
         <!-- 1. Idesia Sora -->
         <div class="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-emerald-500/50 transition duration-300 shadow-xl" data-aos="fade-up" data-aos-delay="100">
           <div class="relative h-52 bg-slate-700">
@@ -169,18 +196,15 @@
           <div class="p-5">
             <h3 class="text-xl font-bold text-white mb-1">Idesia SJDM - Sora (Core)</h3>
             <p class="text-gray-400 text-xs mb-4">📍 San Jose del Monte, Bulacan</p>
-            
             <div class="grid grid-cols-2 gap-2 text-xs bg-slate-900/60 p-3 rounded-xl mb-4 border border-slate-700/40">
               <div><span class="text-gray-400">Lot Area:</span> <span class="font-bold text-white block">80 sq.m</span></div>
               <div><span class="text-gray-400">Floor Area:</span> <span class="font-bold text-white block">52.25 sq.m</span></div>
             </div>
-
             <div class="space-y-1 mb-5 text-sm">
               <div class="flex justify-between text-xs text-gray-400"><span>TCP:</span><span class="font-semibold text-white">₱4,821,806</span></div>
               <div class="flex justify-between text-xs text-gray-400"><span>Reservation:</span><span class="font-semibold text-emerald-400">₱20,000</span></div>
               <div class="flex justify-between text-xs text-gray-400"><span>Monthly Equity:</span><span class="font-semibold text-amber-400">₱21,836 / mo</span></div>
             </div>
-
             <button onclick="openBookingModal('Idesia SJDM - Sora')" class="w-full block text-center bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2.5 rounded-xl transition duration-300 text-xs">
               Book Viewing Sched
             </button>
@@ -196,12 +220,10 @@
           <div class="p-5">
             <h3 class="text-xl font-bold text-white mb-1">Beverly Homes - Hailey Model</h3>
             <p class="text-gray-400 text-xs mb-4">📍 Brgy. San Roque, San Jose del Monte, Bulacan</p>
-            
             <div class="grid grid-cols-2 gap-2 text-xs bg-slate-900/60 p-3 rounded-xl mb-4 border border-slate-700/40">
               <div><span class="text-gray-400">Lot Area:</span> <span class="font-bold text-white block">54 sq.m</span></div>
               <div><span class="text-gray-400">Floor Area:</span> <span class="font-bold text-white block">49 sq.m</span></div>
             </div>
-
             <div class="space-y-1.5 mb-5 text-xs">
               <div class="flex justify-between text-gray-400"><span>Total Contract Price:</span><span class="font-bold text-white">₱2,600,000</span></div>
               <div class="flex justify-between text-gray-400"><span>Reservation Fee:</span><span class="font-semibold text-emerald-400">₱10,000</span></div>
@@ -209,7 +231,6 @@
               <div class="flex justify-between text-gray-400"><span>DP (24 Months):</span><span class="font-semibold text-amber-400">₱16,791.67 / mo</span></div>
               <div class="flex justify-between text-gray-400"><span>Pag-IBIG Amort. (30 yrs):</span><span class="font-bold text-emerald-400">₱13,465 / mo</span></div>
             </div>
-
             <button onclick="openBookingModal('Beverly Homes - Hailey')" class="w-full block text-center bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2.5 rounded-xl transition duration-300 text-xs">
               Book Viewing Sched
             </button>
@@ -225,61 +246,119 @@
           <div class="p-5">
             <h3 class="text-xl font-bold text-white mb-1">Tondo Manila Project</h3>
             <p class="text-gray-400 text-xs mb-4">📍 Tondo, Manila</p>
-
             <div class="space-y-1 mb-5 text-sm">
               <p class="text-xs text-gray-400 mb-2">Prime city location with easy access to ports, markets, and business hubs.</p>
               <div class="flex justify-between text-xs text-gray-400"><span>Location:</span><span class="font-semibold text-white">Metro Manila</span></div>
             </div>
-
             <button onclick="openBookingModal('Tondo Manila Project')" class="w-full block text-center bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2.5 rounded-xl transition duration-300 text-xs">
               Book Viewing Sched
             </button>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- 4. EDSA Tower -->
-        <div class="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-emerald-500/50 transition duration-300 shadow-xl" data-aos="fade-up" data-aos-delay="100">
-          <div class="relative h-52 bg-slate-700 flex items-center justify-center text-gray-500 text-xs">
-            <span>[ Upload Photo ]</span>
-            <span class="absolute top-3 left-3 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">High-Rise Condominium</span>
-          </div>
-          <div class="p-5">
-            <h3 class="text-xl font-bold text-white mb-1">EDSA Tower Residence</h3>
-            <p class="text-gray-400 text-xs mb-4">📍 EDSA Transit Belt, Metro Manila</p>
+  <!-- Client Reviews & Ratings Section -->
+  <section id="reviews" class="py-16 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4">
+      
+      <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4" data-aos="fade-up">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white text-center md:text-left">Client Reviews & Testimonials</h2>
+          <p class="text-gray-400 text-sm mt-1 text-center md:text-left">See what clients say about their property acquisition experience.</p>
+        </div>
 
-            <div class="space-y-1 mb-5 text-sm">
-              <p class="text-xs text-gray-400 mb-2">Highly accessible transit-oriented development perfect for professionals & rental income.</p>
-              <div class="flex justify-between text-xs text-gray-400"><span>Investment:</span><span class="font-semibold text-emerald-400">High Rental Yield</span></div>
+        <button onclick="openReviewModal()" class="bg-slate-800 hover:bg-slate-700 border border-emerald-500/50 text-emerald-400 font-bold px-5 py-2.5 rounded-xl transition duration-300 text-xs flex items-center gap-2">
+          <span>✍️</span> Leave a Review
+        </button>
+      </div>
+
+      <!-- Trust Badges Summary -->
+      <div class="bg-slate-800/40 border border-slate-700/60 rounded-2xl p-6 mb-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center" data-aos="fade-up">
+        <div>
+          <p class="text-2xl sm:text-3xl font-extrabold text-emerald-400">5.0 ★</p>
+          <p class="text-xs text-gray-400 mt-1">Average Client Rating</p>
+        </div>
+        <div>
+          <p class="text-2xl sm:text-3xl font-extrabold text-white">100%</p>
+          <p class="text-xs text-gray-400 mt-1">Legit & Transparent</p>
+        </div>
+        <div>
+          <p class="text-2xl sm:text-3xl font-extrabold text-white">Fast</p>
+          <p class="text-xs text-gray-400 mt-1">Loan Approval Assistance</p>
+        </div>
+        <div>
+          <p class="text-2xl sm:text-3xl font-extrabold text-emerald-400">Direct</p>
+          <p class="text-xs text-gray-400 mt-1">Developer Financing</p>
+        </div>
+      </div>
+
+      <!-- Testimonial Cards Grid -->
+      <div id="reviewsList" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Review 1 -->
+        <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-2xl shadow-lg relative flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-amber-400 text-sm font-bold">⭐⭐⭐⭐⭐</span>
+              <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20 font-semibold">Verified Buyer</span>
             </div>
-
-            <button onclick="openBookingModal('EDSA Tower Residence')" class="w-full block text-center bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2.5 rounded-xl transition duration-300 text-xs">
-              Book Viewing Sched
-            </button>
+            <p class="text-gray-300 text-xs italic leading-relaxed mb-4">
+              "Napaka-smooth kausap ni Christian. Inassist niya kami mula tripping hanggang sa pag-submit ng Pag-IBIG requirements. Walang hidden charges!"
+            </p>
+          </div>
+          <div class="border-t border-slate-700/60 pt-3 flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-xs border border-emerald-500/30">SA</div>
+            <div>
+              <p class="text-xs font-bold text-white">Sir Allan</p>
+              <p class="text-[10px] text-gray-400">Overseas Client | Idesia Sora</p>
+            </div>
           </div>
         </div>
 
-        <!-- 5. Cabanatuan Project -->
-        <div class="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-emerald-500/50 transition duration-300 shadow-xl" data-aos="fade-up" data-aos-delay="200">
-          <div class="relative h-52 bg-slate-700 flex items-center justify-center text-gray-500 text-xs">
-            <span>[ Upload Photo ]</span>
-            <span class="absolute top-3 left-3 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Subdivision / House & Lot</span>
-          </div>
-          <div class="p-5">
-            <h3 class="text-xl font-bold text-white mb-1">Cabanatuan Development</h3>
-            <p class="text-gray-400 text-xs mb-4">📍 Cabanatuan City, Nueva Ecija</p>
-
-            <div class="space-y-1 mb-5 text-sm">
-              <p class="text-xs text-gray-400 mb-2">Spacious living in Central Luzon's booming commercial and educational hub.</p>
-              <div class="flex justify-between text-xs text-gray-400"><span>Area:</span><span class="font-semibold text-white">Nueva Ecija</span></div>
+        <!-- Review 2 -->
+        <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-2xl shadow-lg relative flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-amber-400 text-sm font-bold">⭐⭐⭐⭐⭐</span>
+              <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20 font-semibold">Verified Buyer</span>
             </div>
+            <p class="text-gray-300 text-xs italic leading-relaxed mb-4">
+              "Sobrang responsive kahit gabi na mag-reply! Detalyado ang computation sa Beverly Homes at napakabait mag-explain."
+            </p>
+          </div>
+          <div class="border-t border-slate-700/60 pt-3 flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 font-bold flex items-center justify-center text-xs border border-blue-500/30">H</div>
+            <div>
+              <p class="text-xs font-bold text-white">Hashim</p>
+              <p class="text-[10px] text-gray-400">Property Buyer | Beverly Homes</p>
+            </div>
+          </div>
+        </div>
 
-            <button onclick="openBookingModal('Cabanatuan Development')" class="w-full block text-center bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2.5 rounded-xl transition duration-300 text-xs">
-              Book Viewing Sched
-            </button>
+        <!-- Review 3 -->
+        <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-2xl shadow-lg relative flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-amber-400 text-sm font-bold">⭐⭐⭐⭐⭐</span>
+              <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20 font-semibold">Verified Buyer</span>
+            </div>
+            <p class="text-gray-300 text-xs italic leading-relaxed mb-4">
+              "Legit seller! On-time pumunta sa site tripping at very knowledgeable sa technicalities at housing loans."
+            </p>
+          </div>
+          <div class="border-t border-slate-700/60 pt-3 flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center text-xs border border-amber-500/30">M</div>
+            <div>
+              <p class="text-xs font-bold text-white">Ma'am Karen</p>
+              <p class="text-[10px] text-gray-400">Investor | Metro Manila</p>
+            </div>
           </div>
         </div>
 
       </div>
+
     </div>
   </section>
 
@@ -342,14 +421,12 @@
   <script>
     AOS.init({ duration: 800, once: true });
 
-    // Welcome Modal
     function closeWelcomeModal() {
       const modal = document.getElementById('welcomeModal');
       modal.classList.add('opacity-0', 'pointer-events-none');
       setTimeout(() => { modal.style.display = 'none'; }, 300);
     }
 
-    // Booking Modal Open/Close
     function openBookingModal(projectName = '') {
       const modal = document.getElementById('bookingModal');
       if(projectName) {
@@ -365,7 +442,18 @@
       modal.classList.remove('flex');
     }
 
-    // Send Booking Details via SMS or Messenger
+    function openReviewModal() {
+      const modal = document.getElementById('reviewModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeReviewModal() {
+      const modal = document.getElementById('reviewModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
     function sendBooking(platform) {
       const name = document.getElementById('clientName').value.trim();
       const phone = document.getElementById('clientPhone').value.trim();
@@ -378,16 +466,47 @@
         return;
       }
 
-      // Pre-filled Message Text
       const textMessage = `Hello Christian! Nais ko sanang mag-book ng Site Viewing.%0A%0A👤 Name: ${encodeURIComponent(name)}%0A📞 Contact: ${encodeURIComponent(phone)}%0A🏢 Project: ${encodeURIComponent(project)}%0A📅 Date: ${encodeURIComponent(date)}%0A⏰ Time: ${encodeURIComponent(time)}%0A%0AAvailable po ba kayo sa ganyang schedule?`;
 
       if (platform === 'sms') {
-        // Direct launch of phone Messaging app targetting your mobile number
         window.location.href = `sms:09101615105?body=${textMessage}`;
       } else if (platform === 'messenger') {
-        // Direct Messenger Profile link
         window.open(`https://www.facebook.com/share/19WmBfGU13/?mibextid=wwXIfr`, '_blank');
       }
+    }
+
+    // Submit new review dynamically to page
+    function submitReview(e) {
+      e.preventDefault();
+      const name = document.getElementById('reviewerName').value;
+      const rating = document.getElementById('reviewerRating').value;
+      const comment = document.getElementById('reviewerComment').value;
+
+      const stars = '⭐'.repeat(parseInt(rating));
+      const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+      const reviewCard = `
+        <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-2xl shadow-lg relative flex flex-col justify-between" data-aos="fade-up">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-amber-400 text-sm font-bold">${stars}</span>
+              <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20 font-semibold">Verified Client</span>
+            </div>
+            <p class="text-gray-300 text-xs italic leading-relaxed mb-4">"${comment}"</p>
+          </div>
+          <div class="border-t border-slate-700/60 pt-3 flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-xs border border-emerald-500/30">${initials}</div>
+            <div>
+              <p class="text-xs font-bold text-white">${name}</p>
+              <p class="text-[10px] text-gray-400">Recent Reviewer</p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('reviewsList').insertAdjacentHTML('afterbegin', reviewCard);
+      closeReviewModal();
+      alert('Salamat sa review!');
     }
   </script>
 </body>
