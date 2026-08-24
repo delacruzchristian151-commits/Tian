@@ -27,7 +27,7 @@
       </div>
       <h3 class="text-2xl font-bold text-white mb-2">Welcome to My Portfolio!</h3>
       <p class="text-gray-300 text-sm mb-6 leading-relaxed">
-        Hi! I'm <span class="text-emerald-400 font-bold">Christian Renier Dela Cruz</span>. Thank you for visiting! Explore my top real estate listings, project details, and schedule a site viewing anytime.
+        Hi! I'm <span class="text-emerald-400 font-bold">Christian Renier Dela Cruz</span>. Thank you for visiting! Explore my top real estate listings, calculate your payments, and schedule a site viewing anytime.
       </p>
       <button onclick="closeWelcomeModal()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl transition duration-300 text-sm shadow-lg shadow-emerald-500/20">
         Explore Listings Now 🚀
@@ -55,7 +55,7 @@
           </div>
           <div>
             <label class="block text-xs font-semibold text-gray-300 mb-1">Cellphone Number *</label>
-            <input type="tel" id="clientPhone" required placeholder="ex. 09123456789" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
+            <input type="tel" id="clientPhone" required placeholder="ex. 09101615105" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
           </div>
         </div>
 
@@ -90,6 +90,66 @@
           </button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Video Walkthrough Modal -->
+  <div id="videoModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[100] hidden items-center justify-center p-4">
+    <div class="bg-slate-800 border border-slate-700 max-w-2xl w-full rounded-2xl p-4 shadow-2xl relative">
+      <div class="flex justify-between items-center mb-3">
+        <h3 id="videoModalTitle" class="text-base font-bold text-emerald-400">📹 Property Video Tour</h3>
+        <button onclick="closeVideoModal()" class="text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
+      </div>
+      <div class="aspect-video bg-black rounded-xl overflow-hidden">
+        <iframe id="videoIframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Requirement Checklist Modal -->
+  <div id="requirementsModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-[100] hidden items-center justify-center p-4">
+    <div class="bg-slate-800 border border-slate-700 max-w-lg w-full rounded-2xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4 border-b border-slate-700 pb-3">
+        <h3 class="text-lg font-bold text-emerald-400 flex items-center gap-2">
+          <span>📋</span> Housing Loan Requirements
+        </h3>
+        <button onclick="closeRequirementsModal()" class="text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <div class="bg-slate-900 p-4 rounded-xl border border-slate-700">
+          <h4 class="font-bold text-amber-400 text-sm mb-2">🇵🇭 Locally Employed</h4>
+          <ul class="list-disc pl-4 space-y-1 text-gray-300">
+            <li>2 Valid Government Issued IDs</li>
+            <li>Latest Certificate of Employment (COE) with Salary</li>
+            <li>3 Months Latest Payslips</li>
+            <li>Proof of Billing (Meralco/Water Bill)</li>
+            <li>2x2 ID Photos & Birth Certificate / Marriage Contract</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-900 p-4 rounded-xl border border-slate-700">
+          <h4 class="font-bold text-emerald-400 text-sm mb-2">✈️ Overseas Filipino Worker (OFW)</h4>
+          <ul class="list-disc pl-4 space-y-1 text-gray-300">
+            <li>Valid Passport & Working Visa / Residence Card</li>
+            <li>Latest Job Contract verified by POEA / POLO</li>
+            <li>Proof of Remittance (3 Months)</li>
+            <li>Special Power of Attorney (SPA) if representative in PH</li>
+            <li>Proof of Billing in PH</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-900 p-4 rounded-xl border border-slate-700">
+          <h4 class="font-bold text-blue-400 text-sm mb-2">💼 Self-Employed / Business Owners</h4>
+          <ul class="list-disc pl-4 space-y-1 text-gray-300">
+            <li>DTI / SEC Business Registration</li>
+            <li>Audited Financial Statements (2 Years)</li>
+            <li>Latest Income Tax Return (ITR) Form 1701</li>
+            <li>6 Months Bank Statements</li>
+            <li>Mayor's Permit / Business Permit</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -132,11 +192,11 @@
         Christian Renier <span class="text-xs text-amber-400 block sm:inline font-normal">| Real Estate</span>
       </a>
 
-      <!-- Right Nav Items + Sleek Custom Language Dropdown -->
+      <!-- Right Nav Items -->
       <div class="flex items-center gap-3 sm:gap-6 text-xs sm:text-sm font-medium text-gray-300">
         <a href="#properties" class="hover:text-emerald-400 transition hidden sm:inline">Properties</a>
-        <a href="#reviews" class="hover:text-emerald-400 transition hidden sm:inline">Reviews</a>
-        <a href="#about" class="hover:text-emerald-400 transition hidden sm:inline">About</a>
+        <a href="#calculator" class="hover:text-emerald-400 transition hidden sm:inline">Calculator</a>
+        <a href="#faq" class="hover:text-emerald-400 transition hidden sm:inline">FAQ</a>
         <a href="#contact" class="hover:text-emerald-400 transition hidden sm:inline">Contact</a>
         
         <!-- Clean Custom Language Selector -->
@@ -150,7 +210,6 @@
           </select>
         </div>
 
-        <!-- Hidden Native Google Translate Container -->
         <div id="google_translate_element" class="hidden"></div>
       </div>
     </div>
@@ -184,13 +243,13 @@
         Helping families and investors secure modern townhouses, single-attached homes, and prime real estate opportunities across Bulacan, Metro Manila, and Nueva Ecija.
       </p>
 
-      <div class="flex justify-center gap-4">
+      <div class="flex flex-wrap justify-center gap-3">
         <button onclick="openBookingModal()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition duration-300 text-sm shadow-lg shadow-emerald-500/20">
           Book Free Tripping 📅
         </button>
-        <a href="#properties" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold px-6 py-3 rounded-xl transition duration-300 text-sm">
-          View Listings
-        </a>
+        <button onclick="openRequirementsModal()" class="bg-slate-800 hover:bg-slate-700 border border-emerald-500/50 text-emerald-400 font-semibold px-5 py-3 rounded-xl transition duration-300 text-sm flex items-center gap-2">
+          <span>📋</span> Requirements Checklist
+        </button>
       </div>
     </div>
 
@@ -216,6 +275,9 @@
           <div class="relative h-52 bg-slate-700">
             <img src="https://raw.githubusercontent.com/delacruzchristian151-commits/Tian/main/IMG_1054.jpeg" alt="Idesia Sora Model" class="w-full h-full object-cover">
             <span class="absolute top-3 left-3 bg-emerald-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full shadow">Single Attached</span>
+            <button onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Idesia Sora Walkthrough')" class="absolute bottom-3 right-3 bg-slate-950/80 hover:bg-emerald-500 hover:text-slate-950 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg border border-slate-700 backdrop-blur-sm transition flex items-center gap-1.5">
+              ▶ Video Tour
+            </button>
           </div>
           <div class="p-5">
             <h3 class="text-xl font-bold text-white mb-1">Idesia SJDM - Sora (Core)</h3>
@@ -240,6 +302,9 @@
           <div class="relative h-52 bg-slate-700">
             <img src="https://raw.githubusercontent.com/delacruzchristian151-commits/Tian/main/IMG_0297.jpeg" alt="Beverly Homes Hailey Model" class="w-full h-full object-cover">
             <span class="absolute top-3 left-3 bg-emerald-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full shadow">Townhouse (Inner)</span>
+            <button onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Beverly Homes Hailey Walkthrough')" class="absolute bottom-3 right-3 bg-slate-950/80 hover:bg-emerald-500 hover:text-slate-950 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg border border-slate-700 backdrop-blur-sm transition flex items-center gap-1.5">
+              ▶ Video Tour
+            </button>
           </div>
           <div class="p-5">
             <h3 class="text-xl font-bold text-white mb-1">Beverly Homes - Hailey Model</h3>
@@ -283,8 +348,61 @@
     </div>
   </section>
 
+  <!-- Interactive Amortization Calculator -->
+  <section id="calculator" class="py-16 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto px-4" data-aos="fade-up">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">🧮 Sample Monthly Amortization Calculator</h2>
+        <p class="text-gray-400 text-xs sm:text-sm mt-1">Estimates based on Pag-IBIG 6.25% or Bank Financing Interest Rates.</p>
+      </div>
+
+      <div class="bg-slate-800/80 border border-slate-700 p-6 rounded-2xl shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">Total Contract Price (₱)</label>
+            <input type="number" id="calcTcp" value="2600000" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">Downpayment (%)</label>
+            <select id="calcDpPercent" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
+              <option value="10">10% Downpayment</option>
+              <option value="15" selected>15% Downpayment</option>
+              <option value="20">20% Downpayment</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">Loan Term / Years</label>
+            <select id="calcYears" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
+              <option value="15">15 Years</option>
+              <option value="20">20 Years</option>
+              <option value="30" selected>30 Years (Pag-IBIG Max)</option>
+            </select>
+          </div>
+
+          <button onclick="calculateLoan()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2.5 rounded-xl transition text-xs shadow-lg shadow-emerald-500/20">
+            Calculate Monthly Payment
+          </button>
+        </div>
+
+        <div class="bg-slate-900/80 border border-slate-700/60 p-5 rounded-xl flex flex-col justify-center text-center space-y-4">
+          <div>
+            <p class="text-xs text-gray-400">Estimated Loan Balance</p>
+            <p id="outLoanBalance" class="text-lg font-bold text-white">₱2,210,000</p>
+          </div>
+          <div class="border-t border-slate-800 pt-3">
+            <p class="text-xs text-gray-400">Estimated Monthly Payment</p>
+            <p id="outMonthly" class="text-3xl font-extrabold text-emerald-400">₱13,604 / mo</p>
+          </div>
+          <p class="text-[10px] text-gray-500 italic">*Excludes MRI & Fire Insurance. Final computation may vary per developer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Client Reviews Section -->
-  <section id="reviews" class="py-16 bg-slate-900 border-t border-slate-800">
+  <section id="reviews" class="py-16 bg-slate-950/50 border-t border-slate-800">
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4" data-aos="fade-up">
         <div>
@@ -294,25 +412,6 @@
         <button onclick="openReviewModal()" class="bg-slate-800 hover:bg-slate-700 border border-emerald-500/50 text-emerald-400 font-bold px-5 py-2.5 rounded-xl transition duration-300 text-xs flex items-center gap-2">
           <span>✍️</span> Leave a Review
         </button>
-      </div>
-
-      <div class="bg-slate-800/40 border border-slate-700/60 rounded-2xl p-6 mb-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center" data-aos="fade-up">
-        <div>
-          <p class="text-2xl sm:text-3xl font-extrabold text-emerald-400">5.0 ★</p>
-          <p class="text-xs text-gray-400 mt-1">Average Client Rating</p>
-        </div>
-        <div>
-          <p class="text-2xl sm:text-3xl font-extrabold text-white">100%</p>
-          <p class="text-xs text-gray-400 mt-1">Legit & Transparent</p>
-        </div>
-        <div>
-          <p class="text-2xl sm:text-3xl font-extrabold text-white">Fast</p>
-          <p class="text-xs text-gray-400 mt-1">Loan Approval Assistance</p>
-        </div>
-        <div>
-          <p class="text-2xl sm:text-3xl font-extrabold text-emerald-400">Direct</p>
-          <p class="text-xs text-gray-400 mt-1">Developer Financing</p>
-        </div>
       </div>
 
       <div id="reviewsList" class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -376,50 +475,77 @@
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="py-16 max-w-4xl mx-auto px-4 text-center" data-aos="zoom-in" data-aos-duration="800">
-    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-4">Why Work With Me?</h2>
-    <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-8">
-      I assist clients in finding the best property investments, guiding you through site viewings, loan approvals, and documentation with complete transparency.
-    </p>
+  <!-- FAQ Section -->
+  <section id="faq" class="py-16 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto px-4" data-aos="fade-up">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">❓ Frequently Asked Questions</h2>
+        <p class="text-gray-400 text-xs sm:text-sm mt-1">Mga karaniwang tanong bago kumuha ng property.</p>
+      </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
-      <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50">
-        <p class="text-emerald-400 font-bold mb-1">✓ Site Viewings</p>
-        <p class="text-gray-400 text-xs">Free guided site tours scheduled at your convenience.</p>
-      </div>
-      <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50">
-        <p class="text-emerald-400 font-bold mb-1">✓ Loan Assistance</p>
-        <p class="text-gray-400 text-xs">Complete guidance for Pag-IBIG and Bank Financing applications.</p>
-      </div>
-      <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50">
-        <p class="text-emerald-400 font-bold mb-1">✓ End-to-End Service</p>
-        <p class="text-gray-400 text-xs">Transparent consultation from reservation to turnover.</p>
+      <div class="space-y-3">
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl overflow-hidden">
+          <button onclick="toggleFaq('faq1')" class="w-full p-4 text-left font-bold text-sm text-white flex justify-between items-center hover:bg-slate-700/40">
+            <span>1. Magkano ang kailangang Sahod / Income para Ma-approve sa Pag-IBIG?</span>
+            <span id="faq1-icon" class="text-emerald-400 text-lg">+</span>
+          </button>
+          <div id="faq1" class="hidden p-4 pt-0 text-xs text-gray-300 leading-relaxed border-t border-slate-700/40">
+            Ang required gross monthly income ay naka-depende sa monthly amortization ng bahay. Karaniwan, dapat ang monthly payment ay hindi lalagpas sa 35% ng iyong buwanang sahod. Pwede ring mag-combine ng income sa pamamagitan ng Co-Borrower (spouses, parents, o siblings).
+          </div>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl overflow-hidden">
+          <button onclick="toggleFaq('faq2')" class="w-full p-4 text-left font-bold text-sm text-white flex justify-between items-center hover:bg-slate-700/40">
+            <span>2. Pwede ba ang OFW o nasa Ibang Bansa na Kumuha ng Bahay?</span>
+            <span id="faq2-icon" class="text-emerald-400 text-lg">+</span>
+          </button>
+          <div id="faq2" class="hidden p-4 pt-0 text-xs text-gray-300 leading-relaxed border-t border-slate-700/40">
+            Yes, napakaraming OFW clients! Kakailanganin mo lang magtalaga ng iyong Attorney-in-Fact / Representative (SPA) sa Pilipinas na siyang pupunta sa site tripping at mag-aasikaso ng signature requirements para sa iyo.
+          </div>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl overflow-hidden">
+          <button onclick="toggleFaq('faq3')" class="w-full p-4 text-left font-bold text-sm text-white flex justify-between items-center hover:bg-slate-700/40">
+            <span>3. May Bayad ba ang Site Tripping / Viewing?</span>
+            <span id="faq3-icon" class="text-emerald-400 text-lg">+</span>
+          </button>
+          <div id="faq3" class="hidden p-4 pt-0 text-xs text-gray-300 leading-relaxed border-t border-slate-700/40">
+            100% FREE / LIBRE po ang ating Site Tripping! Pipili ka lang ng araw at oras na libre ka, at sasamahan at io-orient kita sa totoong location ng project.
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact Section with Viber & WhatsApp -->
   <section id="contact" class="py-16 bg-slate-950 border-t border-slate-800" data-aos="fade-up">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h2 class="text-2xl sm:text-3xl font-extrabold text-emerald-400 mb-2">Let's Find Your Property Today</h2>
-      <p class="text-gray-400 text-xs sm:text-sm mb-8">Reach out directly for inquiries, sample computations, or site tripping requests.</p>
+      <p class="text-gray-400 text-xs sm:text-sm mb-8">Reach out directly via Call, Viber, WhatsApp, or Facebook Messenger.</p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
-        <a href="tel:09101615105" class="flex items-center justify-center gap-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-emerald-500 p-4 rounded-xl transition duration-300">
-          <span class="text-2xl">📞</span>
-          <div class="text-left">
-            <p class="text-xs text-gray-400">Call or SMS</p>
-            <p class="text-sm font-bold text-emerald-400">0910-161-5105</p>
-          </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto">
+        <a href="tel:09101615105" class="flex flex-col items-center bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-emerald-500 p-4 rounded-xl transition duration-300">
+          <span class="text-2xl mb-1">📞</span>
+          <p class="text-[11px] text-gray-400">Call / SMS</p>
+          <p class="text-xs font-bold text-emerald-400">09101615105</p>
         </a>
 
-        <a href="https://www.facebook.com/share/19WmBfGU13/?mibextid=wwXIfr" target="_blank" class="flex items-center justify-center gap-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-emerald-500 p-4 rounded-xl transition duration-300">
-          <span class="text-2xl">💬</span>
-          <div class="text-left">
-            <p class="text-xs text-gray-400">Direct Message</p>
-            <p class="text-sm font-bold text-emerald-400">Facebook Profile</p>
-          </div>
+        <a href="viber://chat?number=%2B639101615105" class="flex flex-col items-center bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-purple-500 p-4 rounded-xl transition duration-300">
+          <span class="text-2xl mb-1">💜</span>
+          <p class="text-[11px] text-gray-400">Viber Chat</p>
+          <p class="text-xs font-bold text-purple-400">09101615105</p>
+        </a>
+
+        <a href="https://wa.me/639101615105" target="_blank" class="flex flex-col items-center bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-green-500 p-4 rounded-xl transition duration-300">
+          <span class="text-2xl mb-1">🟢</span>
+          <p class="text-[11px] text-gray-400">WhatsApp</p>
+          <p class="text-xs font-bold text-green-400">09101615105</p>
+        </a>
+
+        <a href="https://www.facebook.com/share/19WmBfGU13/?mibextid=wwXIfr" target="_blank" class="flex flex-col items-center bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-blue-500 p-4 rounded-xl transition duration-300">
+          <span class="text-2xl mb-1">💬</span>
+          <p class="text-[11px] text-gray-400">Facebook</p>
+          <p class="text-xs font-bold text-blue-400">Messenger</p>
         </a>
       </div>
     </div>
@@ -477,6 +603,33 @@
       modal.classList.remove('flex');
     }
 
+    function openVideoModal(url, title) {
+      document.getElementById('videoIframe').src = url;
+      document.getElementById('videoModalTitle').innerText = '📹 ' + title;
+      const modal = document.getElementById('videoModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeVideoModal() {
+      document.getElementById('videoIframe').src = '';
+      const modal = document.getElementById('videoModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function openRequirementsModal() {
+      const modal = document.getElementById('requirementsModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeRequirementsModal() {
+      const modal = document.getElementById('requirementsModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
     function openReviewModal() {
       const modal = document.getElementById('reviewModal');
       modal.classList.remove('hidden');
@@ -487,6 +640,35 @@
       const modal = document.getElementById('reviewModal');
       modal.classList.add('hidden');
       modal.classList.remove('flex');
+    }
+
+    function toggleFaq(id) {
+      const element = document.getElementById(id);
+      const icon = document.getElementById(id + '-icon');
+      if (element.classList.contains('hidden')) {
+        element.classList.remove('hidden');
+        icon.innerText = '−';
+      } else {
+        element.classList.add('hidden');
+        icon.innerText = '+';
+      }
+    }
+
+    function calculateLoan() {
+      const tcp = parseFloat(document.getElementById('calcTcp').value) || 0;
+      const dpPercent = parseFloat(document.getElementById('calcDpPercent').value) / 100;
+      const years = parseInt(document.getElementById('calcYears').value);
+
+      const dpAmount = tcp * dpPercent;
+      const loanBalance = tcp - dpAmount;
+      const annualRate = 0.0625; // 6.25% Interest Rate
+      const monthlyRate = annualRate / 12;
+      const totalPayments = years * 12;
+
+      const monthlyAmort = (loanBalance * monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / (Math.pow(1 + monthlyRate, totalPayments) - 1);
+
+      document.getElementById('outLoanBalance').innerText = '₱' + loanBalance.toLocaleString('en-US', {maximumFractionDigits: 0});
+      document.getElementById('outMonthly').innerText = '₱' + Math.round(monthlyAmort).toLocaleString('en-US') + ' / mo';
     }
 
     function sendBooking(platform) {
