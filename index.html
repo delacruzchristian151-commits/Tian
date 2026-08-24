@@ -10,18 +10,11 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   
   <style>
-    /* Clean up Google Translate UI elements */
+    /* Google Translate Hidden Styles */
     .goog-te-banner-frame { display: none !important; }
     body { top: 0px !important; }
-    .goog-te-gadget-simple {
-      background-color: #1e293b !important;
-      border: 1px solid #334155 !important;
-      padding: 4px 8px !important;
-      border-radius: 8px !important;
-      font-size: 12px !important;
-    }
-    .goog-te-gadget-simple span { color: #e2e8f0 !important; }
-    .goog-te-menu-value span { color: #e2e8f0 !important; }
+    .goog-te-gadget-simple { display: none !important; }
+    .skiptranslate { display: none !important; }
   </style>
 </head>
 <body class="bg-slate-900 text-gray-100 font-sans antialiased overflow-x-hidden">
@@ -42,7 +35,7 @@
     </div>
   </div>
 
-  <!-- Interactive Site Viewing Booking Modal -->
+  <!-- Site Viewing Booking Modal -->
   <div id="bookingModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-[100] hidden items-center justify-center p-4">
     <div class="bg-slate-800 border border-slate-700 max-w-lg w-full rounded-2xl p-6 shadow-2xl relative">
       <div class="flex justify-between items-center mb-4 border-b border-slate-700 pb-3">
@@ -139,15 +132,26 @@
         Christian Renier <span class="text-xs text-amber-400 block sm:inline font-normal">| Real Estate</span>
       </a>
 
-      <!-- Right Nav Items & Translation Selector -->
+      <!-- Right Nav Items + Sleek Custom Language Dropdown -->
       <div class="flex items-center gap-3 sm:gap-6 text-xs sm:text-sm font-medium text-gray-300">
         <a href="#properties" class="hover:text-emerald-400 transition hidden sm:inline">Properties</a>
         <a href="#reviews" class="hover:text-emerald-400 transition hidden sm:inline">Reviews</a>
         <a href="#about" class="hover:text-emerald-400 transition hidden sm:inline">About</a>
         <a href="#contact" class="hover:text-emerald-400 transition hidden sm:inline">Contact</a>
         
-        <!-- Google Translate Widget Container -->
-        <div id="google_translate_element"></div>
+        <!-- Clean Custom Language Selector -->
+        <div class="relative inline-block text-left">
+          <select id="customLanguageSelect" onchange="changeLanguage(this.value)" class="bg-slate-900 text-xs font-medium text-emerald-400 border border-slate-700 hover:border-emerald-500 rounded-full px-3 py-1 focus:outline-none cursor-pointer transition">
+            <option value="en" selected>🌐 English</option>
+            <option value="tl">🌐 Tagalog</option>
+            <option value="zh-CN">🌐 Chinese</option>
+            <option value="ja">🌐 Japanese</option>
+            <option value="ko">🌐 Korean</option>
+          </select>
+        </div>
+
+        <!-- Hidden Native Google Translate Container -->
+        <div id="google_translate_element" class="hidden"></div>
       </div>
     </div>
   </nav>
@@ -279,7 +283,7 @@
     </div>
   </section>
 
-  <!-- Client Reviews & Ratings Section -->
+  <!-- Client Reviews Section -->
   <section id="reviews" class="py-16 bg-slate-900 border-t border-slate-800">
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4" data-aos="fade-up">
@@ -369,7 +373,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -427,17 +430,25 @@
     <p>© 2026 Christian Renier Dela Cruz. Real Estate Sales Specialist.</p>
   </footer>
 
-  <!-- AOS Animation JS Script -->
+  <!-- AOS Animation JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-  <!-- Google Translate JS Engine -->
+  <!-- Google Translate JS Engine Bridge -->
   <script type="text/javascript">
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'en',
-        includedLanguages: 'en,tl,ja,zh-CN,ko',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        includedLanguages: 'en,tl,zh-CN,ja,ko',
+        autoDisplay: false
       }, 'google_translate_element');
+    }
+
+    function changeLanguage(langCode) {
+      const googleSelect = document.querySelector('.goog-te-combo');
+      if (googleSelect) {
+        googleSelect.value = langCode;
+        googleSelect.dispatchEvent(new Event('change'));
+      }
     }
   </script>
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
