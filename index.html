@@ -4,9 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Christian Renier | Real Estate Specialist</title>
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
-<body class="bg-slate-900 text-gray-100 font-sans antialiased">
+<body class="bg-slate-900 text-gray-100 font-sans antialiased overflow-x-hidden">
 
   <!-- Navigation Bar -->
   <nav class="fixed top-0 w-full bg-slate-900/90 backdrop-blur-md z-50 border-b border-slate-800">
@@ -23,7 +26,7 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="pt-28 pb-16 px-4 max-w-6xl mx-auto text-center">
+  <section class="pt-28 pb-16 px-4 max-w-6xl mx-auto text-center" data-aos="fade-down" data-aos-duration="1000">
     <span class="inline-block bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
       Licensed Real Estate Sales Executive
     </span>
@@ -47,7 +50,7 @@
   <section id="properties" class="py-12 bg-slate-950/50 border-t border-slate-800">
     <div class="max-w-6xl mx-auto px-4">
       
-      <div class="mb-10 text-center sm:text-left">
+      <div class="mb-10 text-center sm:text-left" data-aos="fade-right">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Featured Projects</h2>
         <p class="text-gray-400 text-sm mt-1">Explore prime residential units with flexible equity and low reservation fees.</p>
       </div>
@@ -55,7 +58,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
         <!-- 1. Idesia Sora -->
-        <div class="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-emerald-500/50 transition duration-300 shadow-xl">
+        <div class="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-emerald-500/50 transition duration-300 shadow-xl" data-aos="fade-up" data-aos-delay="100">
           <div class="relative h-52 bg-slate-700">
             <img src="https://raw.githubusercontent.com/delacruzchristian151-commits/Tian/main/IMG_1054.jpeg" alt="Idesia Sora Model" class="w-full h-full object-cover">
             <span class="absolute top-3 left-3 bg-emerald-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full shadow">Single Attached</span>
@@ -81,8 +84,8 @@
           </div>
         </div>
 
-                <!-- Beverly Homes - Hailey Model -->
-        <div class="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-emerald-500/50 transition duration-300 shadow-xl">
+        <!-- 2. Beverly Homes SJDM - Hailey Model -->
+        <div class="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-emerald-500/50 transition duration-300 shadow-xl" data-aos="fade-up" data-aos-delay="200">
           <div class="relative h-52 bg-slate-700">
             <img src="https://raw.githubusercontent.com/delacruzchristian151-commits/Tian/main/IMG_0297.jpeg" alt="Beverly Homes Hailey Model" class="w-full h-full object-cover">
             <span class="absolute top-3 left-3 bg-emerald-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full shadow">Townhouse (Inner)</span>
@@ -110,9 +113,8 @@
           </div>
         </div>
 
-
         <!-- 3. Tondo Manila Project -->
-        <div class="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-emerald-500/50 transition duration-300 shadow-xl">
+        <div class="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-emerald-500/50 transition duration-300 shadow-xl" data-aos="fade-up" data-aos-delay="300">
           <div class="relative h-52 bg-slate-700 flex items-center justify-center text-gray-500 text-xs">
             <span>[ Upload Photo ]</span>
             <span class="absolute top-3 left-3 bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full shadow">Condo / Urban Living</span>
@@ -133,7 +135,7 @@
         </div>
 
         <!-- 4. EDSA Tower -->
-        <div class="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-emerald-500/50 transition duration-300 shadow-xl">
+        <div class="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-emerald-500/50 transition duration-300 shadow-xl" data-aos="fade-up" data-aos-delay="100">
           <div class="relative h-52 bg-slate-700 flex items-center justify-center text-gray-500 text-xs">
             <span>[ Upload Photo ]</span>
             <span class="absolute top-3 left-3 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">High-Rise Condominium</span>
@@ -154,7 +156,7 @@
         </div>
 
         <!-- 5. Cabanatuan Project -->
-        <div class="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-emerald-500/50 transition duration-300 shadow-xl">
+        <div class="bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-emerald-500/50 transition duration-300 shadow-xl" data-aos="fade-up" data-aos-delay="200">
           <div class="relative h-52 bg-slate-700 flex items-center justify-center text-gray-500 text-xs">
             <span>[ Upload Photo ]</span>
             <span class="absolute top-3 left-3 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Subdivision / House & Lot</span>
@@ -179,7 +181,7 @@
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-16 max-w-4xl mx-auto px-4 text-center">
+  <section id="about" class="py-16 max-w-4xl mx-auto px-4 text-center" data-aos="zoom-in" data-aos-duration="800">
     <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-4">Why Work With Me?</h2>
     <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-8">
       I assist clients in finding the best property investments, guiding you through site viewings, loan approvals, and documentation with complete transparency.
@@ -202,7 +204,7 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-slate-950 border-t border-slate-800">
+  <section id="contact" class="py-16 bg-slate-950 border-t border-slate-800" data-aos="fade-up">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h2 class="text-2xl sm:text-3xl font-extrabold text-emerald-400 mb-2">Let's Find Your Property Today</h2>
       <p class="text-gray-400 text-xs sm:text-sm mb-8">Reach out directly for inquiries, sample computations, or site tripping requests.</p>
@@ -232,5 +234,13 @@
     <p>© 2026 Christian Renier Dela Cruz. Real Estate Sales Specialist.</p>
   </footer>
 
+  <!-- AOS Animation JS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+  </script>
 </body>
 </html>
