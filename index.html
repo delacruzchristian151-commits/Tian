@@ -551,6 +551,46 @@
     </div>
   </section>
 
+  <!-- Floating AI Chatbot Button (Bottom Right) -->
+  <div id="aiChatBtn" onclick="toggleAiChat()" class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-400 text-slate-950 p-4 rounded-full shadow-2xl z-[90] cursor-pointer transition-all duration-300 transform hover:scale-110 flex items-center gap-2">
+    <span class="text-2xl">🤖</span>
+    <span class="text-xs font-bold hidden sm:inline">Ask AI Assistant</span>
+  </div>
+
+  <!-- AI Chatbot Window -->
+  <div id="aiChatWindow" class="fixed bottom-24 right-6 w-80 sm:w-96 bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl z-[90] hidden flex-col overflow-hidden">
+    <!-- Chat Header -->
+    <div class="bg-slate-900 p-4 border-b border-slate-700 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold text-sm">
+          🤖
+        </div>
+        <div>
+          <h4 class="text-sm font-bold text-white">Christian's AI Assistant</h4>
+          <p class="text-[10px] text-emerald-400 flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Online | Instant Reply
+          </p>
+        </div>
+      </div>
+      <button onclick="toggleAiChat()" class="text-gray-400 hover:text-white text-xl font-bold">&times;</button>
+    </div>
+
+    <!-- Chat Messages Container -->
+    <div id="chatMessages" class="p-4 h-72 overflow-y-auto space-y-3 text-xs">
+      <div class="bg-slate-700/60 text-gray-200 p-3 rounded-xl max-w-[85%] leading-relaxed">
+        Hello! Ako ang AI Assistant ni Christian Dela Cruz. Paano kita matutulungan sa paghahanap ng bahay o site viewing schedule mo ngayon? 😊
+      </div>
+    </div>
+
+    <!-- Chat Input -->
+    <div class="p-3 bg-slate-900 border-t border-slate-700 flex gap-2">
+      <input type="text" id="userChatInput" placeholder="Type your question..." onkeypress="handleKeyPress(event)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+      <button onclick="sendAiMessage()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-3 py-2 rounded-xl font-bold text-xs">
+        Send
+      </button>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="py-6 bg-slate-950 border-t border-slate-900 text-center text-xs text-gray-500">
     <p>© 2026 Christian Renier Dela Cruz. Real Estate Sales Specialist.</p>
@@ -579,6 +619,7 @@
   </script>
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+  <!-- Core Functionalities Script -->
   <script>
     AOS.init({ duration: 800, once: true });
 
@@ -683,13 +724,22 @@
         return;
       }
 
+      // 1. Isara ang Booking Modal
+      closeBookingModal();
+
+      // 2. I-trigger ang AI Confirmation Alert sa Chat Widget
+      triggerAiBookingAlert(name, project, date);
+
+      // 3. I-redirect sa Messaging App (SMS / Messenger)
       const textMessage = `Hello Christian! Nais ko sanang mag-book ng Site Viewing.%0A%0A👤 Name: ${encodeURIComponent(name)}%0A📞 Contact: ${encodeURIComponent(phone)}%0A🏢 Project: ${encodeURIComponent(project)}%0A📅 Date: ${encodeURIComponent(date)}%0A⏰ Time: ${encodeURIComponent(time)}%0A%0AAvailable po ba kayo sa ganyang schedule?`;
 
-      if (platform === 'sms') {
-        window.location.href = `sms:09101615105?body=${textMessage}`;
-      } else if (platform === 'messenger') {
-        window.open(`https://www.facebook.com/share/19WmBfGU13/?mibextid=wwXIfr`, '_blank');
-      }
+      setTimeout(() => {
+        if (platform === 'sms') {
+          window.location.href = `sms:09101615105?body=${textMessage}`;
+        } else if (platform === 'messenger') {
+          window.open(`https://www.facebook.com/share/19WmBfGU13/?mibextid=wwXIfr`, '_blank');
+        }
+      }, 1000);
     }
 
     function submitReview(e) {
@@ -723,6 +773,81 @@
       document.getElementById('reviewsList').insertAdjacentHTML('afterbegin', reviewCard);
       closeReviewModal();
       alert('Salamat sa review!');
+    }
+
+    // AI Chatbot Functions
+    function toggleAiChat() {
+      const chat = document.getElementById('aiChatWindow');
+      if (chat.classList.contains('hidden')) {
+        chat.classList.remove('hidden');
+        chat.classList.add('flex');
+      } else {
+        chat.classList.add('hidden');
+        chat.classList.remove('flex');
+      }
+    }
+
+    function handleKeyPress(e) {
+      if (e.key === 'Enter') sendAiMessage();
+    }
+
+    function sendAiMessage() {
+      const input = document.getElementById('userChatInput');
+      const msg = input.value.trim().toLowerCase();
+      if (!msg) return;
+
+      const chatContainer = document.getElementById('chatMessages');
+
+      // Display User Message
+      chatContainer.innerHTML += `
+        <div class="flex justify-end">
+          <div class="bg-emerald-500 text-slate-950 font-medium p-3 rounded-xl max-w-[85%]">
+            ${input.value}
+          </div>
+        </div>
+      `;
+
+      input.value = '';
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+
+      // AI Processing Logic
+      setTimeout(() => {
+        let botResponse = "Salamat sa mensahe! Naitala ko ito at ire-review ni Christian para makapag-reply siya agad sa'yo via SMS/Viber.";
+
+        if (msg.includes('requirement') || msg.includes('papel') || msg.includes('kailangan')) {
+          botResponse = "Para sa Pag-IBIG Housing Loan, ang basic requirements ay: 2 Valid IDs, Certificate of Employment (COE), 3 months Payslips, at Proof of Billing. Pwede mong i-click ang 'Requirements Checklist' button sa itaas para sa kumpletong listahan!";
+        } else if (msg.includes('tripping') || msg.includes('viewing') || msg.includes('book') || msg.includes('schedule')) {
+          botResponse = "Libre lang po ang ating Site Tripping! I-click lang ang 'Book Free Tripping' button sa website at piliin ang petsa at oras na gusto mo.";
+        } else if (msg.includes('idesia') || msg.includes('sora')) {
+          botResponse = "Ang Idesia Sora ay matatagpuan sa SJDM Bulacan. Single Attached unit ito na may 80 sq.m lot area. Ang monthly equity ay nasa ₱21,836/month.";
+        } else if (msg.includes('beverly') || msg.includes('hailey')) {
+          botResponse = "Ang Beverly Homes (Hailey Model) ay nasa Brgy. San Roque, SJDM Bulacan. Townhouse unit ito na ₱13,465/mo lang sa Pag-IBIG (30 yrs).";
+        } else if (msg.includes('contact') || msg.includes('number') || msg.includes('phone')) {
+          botResponse = "Maaari mong tawagan o i-message si Christian sa 09101615105 (SMS / Viber / WhatsApp).";
+        }
+
+        chatContainer.innerHTML += `
+          <div class="bg-slate-700/60 text-gray-200 p-3 rounded-xl max-w-[85%] leading-relaxed">
+            ${botResponse}
+          </div>
+        `;
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }, 600);
+    }
+
+    function triggerAiBookingAlert(clientName, project, date) {
+      const chat = document.getElementById('aiChatWindow');
+      if (chat.classList.contains('hidden')) {
+        toggleAiChat();
+      }
+      const chatContainer = document.getElementById('chatMessages');
+      chatContainer.innerHTML += `
+        <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 p-3 rounded-xl leading-relaxed">
+          <strong>🤖 Auto Confirmation:</strong><br>
+          Hi ${clientName}! Natanggap ko ang booking request mo para sa <strong>${project}</strong> sa <strong>${date}</strong>. Naipasa ko na ito agad kay Christian Dela Cruz. Mag-re-reply siya sa cellphone number mo shortly!
+        </div>
+      `;
+      chatContainer.scrollTop = chatContainer.scrollHeight;
     }
   </script>
 </body>
